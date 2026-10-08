@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dmnr50671ws5"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pa54t"]
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1091231624]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=748895444]
+scale = Vector2(5, 5)
+texture = SubResource("ViewportTexture_pa54t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=869321685]
