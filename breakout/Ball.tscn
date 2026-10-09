@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://dmnr50671ws5"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_pa54t"]
+[ext_resource type="Script" uid="uid://hu3ueyy4skjm" path="res://Scripts/ball_script.gd" id="1_gk6bx"]
 
-[node name="RigidBody2D" type="RigidBody2D" unique_id=1091231624]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pa54t"]
+radius = 8.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=748895444]
-scale = Vector2(5, 5)
-texture = SubResource("ViewportTexture_pa54t")
+[node name="Ball" type="CharacterBody2D" unique_id=932644770]
+script = ExtResource("1_gk6bx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=869321685]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1158447655]
+shape = SubResource("CircleShape2D_pa54t")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1709638501]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
