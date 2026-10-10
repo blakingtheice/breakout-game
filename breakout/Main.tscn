@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://fop01yrfd6on"]
 
+[ext_resource type="Script" uid="uid://bdmko86v1n2we" path="res://Scripts/main_script.gd" id="1_r0du0"]
 [ext_resource type="PackedScene" uid="uid://dfsl1qlshxm5n" path="res://Paddle.tscn" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://dmnr50671ws5" path="res://Ball.tscn" id="2_r0du0"]
 
 [node name="Main" type="Node2D" unique_id=1139173841]
+script = ExtResource("1_r0du0")
 
 [node name="Paddle" parent="." unique_id=174941746 instance=ExtResource("1_uu6xs")]
 position = Vector2(400, 560)
-
-[node name="RigidBody2D" parent="." unique_id=1091231624 instance=ExtResource("2_r0du0")]
 
 [node name="Ball" parent="." unique_id=932644770 instance=ExtResource("2_r0du0")]
 

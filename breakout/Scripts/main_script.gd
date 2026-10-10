@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 			get_tree().reload_current_scene()
 		return
 	if not ball.launched:
-		ball.global_position = paddle.global_position + Vector2(0,-24)
+		ball.global_position = paddle.global_position + Vector2(0,-20)
 		if Input.is_action_just_pressed("launch"):
 			ball.launch()
 
@@ -70,6 +70,7 @@ func _on_brick_destroyed() -> void:
 
 func _on_ball_lost() -> void:
 	lives -= 1
+	_update_ui()
 	if lives <= 0:
 		game_over = true
 		label.text = "Game over! Score: %d (Space to restart)" % score

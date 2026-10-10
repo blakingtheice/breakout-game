@@ -3,7 +3,6 @@ extends CharacterBody2D
 signal lost
 
 const speed: float = 400.0
-const paddle_half_width: float = 50.0
 
 var launched : bool = false
 
@@ -18,15 +17,16 @@ func _physics_process(delta: float) -> void:
 	
 	#collision object
 	var collision := move_and_collide(velocity*delta)
-	var offset: float
 	
 	if collision:
 		var collider := collision.get_collider()
 		if collider.is_in_group("paddle"):
-			offset = (global_position.x - collider.global_position.x) / paddle_half_width
-			offset = clamp(offset,-1.0,1.0)
+			var half_width: float = collider.get_node("CollisionShape2D").shape.size.x / 2.0
+			var offset: float = (global_position.x - collider.global_position.x) / half_width
+			offset = clampf(offset,-1.0,1.0)
+			print("ball x: ", global_position.x," paddle x: ", collider.global_position.x, " offset x: ",offset)
 			velocity = Vector2(offset,-1).normalized() * speed
-		else:
+		else:   
 			#reflects ball off whatever is hit
 			velocity = velocity.bounce(collision.get_normal())
 			if collider.is_in_group("bricks"):
