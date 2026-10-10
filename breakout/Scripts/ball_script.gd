@@ -24,7 +24,6 @@ func _physics_process(delta: float) -> void:
 			var half_width: float = collider.get_node("CollisionShape2D").shape.size.x / 2.0
 			var offset: float = (global_position.x - collider.global_position.x) / half_width
 			offset = clampf(offset,-1.0,1.0)
-			print("ball x: ", global_position.x," paddle x: ", collider.global_position.x, " offset x: ",offset)
 			velocity = Vector2(offset,-1).normalized() * speed
 		else:   
 			#reflects ball off whatever is hit
