@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal lost
 
-const speed: float = 400.0
+var speed: float = 400.0
 
 var launched : bool = false
 
@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.bounce(collision.get_normal())
 			if collider.is_in_group("bricks"):
 				collider.hit()
+				speed += 10
 	if global_position.y > 620:
 		launched = false
 		lost.emit()

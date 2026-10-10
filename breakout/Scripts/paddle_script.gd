@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # specify speed, need half width of box as well
 
-const speed : float = 500.0
+const speed : float = 600.0
 const half_width : float= 50.0
 
 func _physics_process(_delta:float) -> void:
