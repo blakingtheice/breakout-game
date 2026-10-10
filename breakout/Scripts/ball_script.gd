@@ -34,10 +34,6 @@ func _physics_process(delta: float) -> void:
 	if global_position.y > 620:
 		launched = false
 		lost.emit()
-	
-
-	
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
