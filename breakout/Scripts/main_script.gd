@@ -62,6 +62,7 @@ func _on_brick_destroyed() -> void:
 	score += 10
 	bricks_left -= 1
 	if bricks_left == 0:
+		# insert game over winning function with label update showing UI
 		game_over = true
 		label.text = "You win! Score: %d (Space to restart)" % score
 		return
@@ -77,3 +78,8 @@ func _on_ball_lost() -> void:
 		
 func _update_ui() -> void:
 	label.text = "Score: %d    Lives: %d" % [score,lives]
+
+'''create game over function.
+should show the game over screen with UI, show label until space bar is pressed, 
+and then begins game.
+if win, then show winning game screen. If lose, show losing game over screen.'''
