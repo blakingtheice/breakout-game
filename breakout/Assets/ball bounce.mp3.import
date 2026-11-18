@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cqmqrigyspy4x"
+path="res://.godot/imported/ball bounce.mp3-91f17052a49b1895c742ea54d3d501bf.mp3str"
+
+[deps]
+
+source_file="res://Assets/ball bounce.mp3"
+dest_files=["res://.godot/imported/ball bounce.mp3-91f17052a49b1895c742ea54d3d501bf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

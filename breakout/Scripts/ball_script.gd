@@ -1,9 +1,7 @@
 extends CharacterBody2D
-
 signal lost
 
 var speed: float = 400.0
-
 var launched : bool = false
 
 func launch() -> void:
@@ -25,7 +23,8 @@ func _physics_process(delta: float) -> void:
 			var offset: float = (global_position.x - collider.global_position.x) / half_width
 			offset = clampf(offset,-1.0,1.0)
 			velocity = Vector2(offset,-1).normalized() * speed
-		else:   
+		else:
+			$BallBounce.play()   
 			#reflects ball off whatever is hit
 			velocity = velocity.bounce(collision.get_normal())
 			if collider.is_in_group("bricks"):
@@ -34,6 +33,7 @@ func _physics_process(delta: float) -> void:
 	if global_position.y > 620:
 		launched = false
 		lost.emit()
+		
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

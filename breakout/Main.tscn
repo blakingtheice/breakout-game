@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bdmko86v1n2we" path="res://Scripts/main_script.gd" id="1_r0du0"]
 [ext_resource type="PackedScene" uid="uid://dfsl1qlshxm5n" path="res://Paddle.tscn" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://dmnr50671ws5" path="res://Ball.tscn" id="2_r0du0"]
+[ext_resource type="AudioStream" uid="uid://d0hbvwixlkw5r" path="res://Assets/ball lost.mp3" id="4_fos0i"]
+[ext_resource type="AudioStream" uid="uid://cqmqrigyspy4x" path="res://Assets/ball bounce.mp3" id="5_3dxm6"]
+[ext_resource type="AudioStream" uid="uid://dqv7q82pawyra" path="res://Assets/5.mp3" id="6_3dxm6"]
 
 [node name="Main" type="Node2D" unique_id=1139173841]
 script = ExtResource("1_r0du0")
@@ -14,8 +17,17 @@ position = Vector2(400, 560)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1810990849]
 
-[node name="Label" type="Label" parent="UI" unique_id=1937181983]
+[node name="UpperLeftUI" type="Label" parent="UI" unique_id=1937181983]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 50.0
 offset_bottom = 33.0
+
+[node name="BallLostSound" type="AudioStreamPlayer" parent="." unique_id=647239408]
+stream = ExtResource("4_fos0i")
+
+[node name="BallBounce" type="AudioStreamPlayer" parent="." unique_id=1531715046]
+stream = ExtResource("5_3dxm6")
+
+[node name="Game Music" type="AudioStreamPlayer" parent="." unique_id=130635914]
+stream = ExtResource("6_3dxm6")

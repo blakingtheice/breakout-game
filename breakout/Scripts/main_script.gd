@@ -7,7 +7,7 @@ const ROWS := 5
 # @onready assigns value after node has entered scene tree
 @onready var paddle := $Paddle
 @onready var ball := $Ball
-@onready var label: Label = $UI/Label
+@onready var label: Label = $UI/UpperLeftUI
 
 var score := 0
 var lives := 3
@@ -17,6 +17,7 @@ var game_over := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$"Game Music".play()
 	paddle.add_to_group("paddle")
 	_make_wall(Vector2(-10,300),Vector2(20,600)) #leftwall
 	_make_wall(Vector2(810,300),Vector2(20,600)) #rightwall
@@ -64,12 +65,13 @@ func _on_brick_destroyed() -> void:
 	if bricks_left == 0:
 		# insert game over winning function with label update showing UI
 		game_over = true
-		label.text = "You win! Score: %d (Space to restart)" % score
+		label.text = "You win! Sc ore: %d (Space to restart)" % score
 		return
 	_update_ui()
 	
 
 func _on_ball_lost() -> void:
+	$BallLostSound.play() 
 	lives -= 1
 	_update_ui()
 	if lives <= 0:
@@ -78,6 +80,13 @@ func _on_ball_lost() -> void:
 		
 func _update_ui() -> void:
 	label.text = "Score: %d    Lives: %d" % [score,lives]
+
+
+'''
+Create start menu
+Button to click on start menu
+
+'''
 
 '''create game over function.
 should show the game over screen with UI, show label until space bar is pressed, 
