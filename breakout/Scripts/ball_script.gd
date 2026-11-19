@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 			offset = clampf(offset,-1.0,1.0)
 			velocity = Vector2(offset,-1).normalized() * speed
 		else:
-			$BallBounce.play()   
+			$BallBounce.play()
 			#reflects ball off whatever is hit
 			velocity = velocity.bounce(collision.get_normal())
 			if collider.is_in_group("bricks"):

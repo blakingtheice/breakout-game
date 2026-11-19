@@ -23,6 +23,32 @@ offset_top = 10.0
 offset_right = 50.0
 offset_bottom = 33.0
 
+[node name="TitleText" type="Label" parent="UI" unique_id=712617389]
+offset_left = 190.0
+offset_top = 190.0
+offset_right = 631.0
+offset_bottom = 305.0
+theme_override_font_sizes/font_size = 84
+text = "BREAKOUT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="UI" unique_id=226332073]
+offset_left = 279.0
+offset_top = 318.0
+offset_right = 533.0
+offset_bottom = 359.0
+theme_override_font_sizes/font_size = 24
+text = "Start Game"
+
+[node name="RestartButton" type="Button" parent="UI" unique_id=2079289470]
+offset_left = 280.0
+offset_top = 321.0
+offset_right = 534.0
+offset_bottom = 363.0
+theme_override_font_sizes/font_size = 24
+text = "Restart Game"
+
 [node name="BallLostSound" type="AudioStreamPlayer" parent="." unique_id=647239408]
 stream = ExtResource("4_fos0i")
 

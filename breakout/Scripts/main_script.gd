@@ -8,6 +8,9 @@ const ROWS := 5
 @onready var paddle := $Paddle
 @onready var ball := $Ball
 @onready var label: Label = $UI/UpperLeftUI
+@onready var startbutton: Button = $UI/StartButton
+@onready var title: Label = $UI/TitleText
+@onready var restart: Button = $UI/RestartButton
 
 var score := 0
 var lives := 3
@@ -18,11 +21,10 @@ var game_over := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"Game Music".play()
-	paddle.add_to_group("paddle")
-	_make_wall(Vector2(-10,300),Vector2(20,600)) #leftwall
-	_make_wall(Vector2(810,300),Vector2(20,600)) #rightwall
-	_make_wall(Vector2(400,-10),Vector2(800,20)) #topwall
-	_spawn_bricks()
+	restart.hide()
+	paddle.hide()
+	ball.hide()
+	startbutton.pressed.connect(_start_button_pressed)
 	ball.lost.connect(_on_ball_lost)
 	_update_ui()
 
@@ -30,9 +32,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if game_over:
-		if Input.is_action_just_pressed("launch"):
-			get_tree().reload_current_scene()
-		return
+		_game_over()
 	if not ball.launched:
 		ball.global_position = paddle.global_position + Vector2(0,-20)
 		if Input.is_action_just_pressed("launch"):
@@ -65,7 +65,12 @@ func _on_brick_destroyed() -> void:
 	if bricks_left == 0:
 		# insert game over winning function with label update showing UI
 		game_over = true
-		label.text = "You win! Sc ore: %d (Space to restart)" % score
+		paddle.process_mode = Node.PROCESS_MODE_DISABLED
+		title.text = "You win! Score: %d" % score
+		title.add_theme_font_size_override("font_size",24)
+		title.show()
+		restart.show()
+		restart.pressed.connect(_restart_button_pressed)
 		return
 	_update_ui()
 	
@@ -76,19 +81,30 @@ func _on_ball_lost() -> void:
 	_update_ui()
 	if lives <= 0:
 		game_over = true
-		label.text = "Game over! Score: %d (Space to restart)" % score
 		
 func _update_ui() -> void:
 	label.text = "Score: %d    Lives: %d" % [score,lives]
 
+func _start_button_pressed():
+	startbutton.hide()
+	title.hide()
+	ball.show()
+	paddle.show()
+	paddle.add_to_group("paddle")
+	_make_wall(Vector2(-10,300),Vector2(20,600)) #leftwall
+	_make_wall(Vector2(810,300),Vector2(20,600)) #rightwall
+	_make_wall(Vector2(400,-10),Vector2(800,20)) #topwall
+	_spawn_bricks()
 
-'''
-Create start menu
-Button to click on start menu
-
-'''
-
-'''create game over function.
-should show the game over screen with UI, show label until space bar is pressed, 
-and then begins game.
-if win, then show winning game screen. If lose, show losing game over screen.'''
+func _restart_button_pressed():
+	get_tree().change_scene_to_file("res://Main.tscn")
+	
+func _game_over():
+	paddle.process_mode = Node.PROCESS_MODE_DISABLED
+	title.text = 'Game Over! Score: %d' % score
+	title.add_theme_font_size_override("font_size",24)
+	title.show()
+	restart.show()
+	restart.pressed.connect(_restart_button_pressed)
+	
+	
